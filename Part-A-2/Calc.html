@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    
+ <title>Calculator</title>
+        <style>
+            label {
+              float: right;
+              width: 250px;
+            }
+            #cal{
+              width: 900px;
+              margin: auto;
+              /*background-color:aquamarine;*/
+            }
+            main {
+              padding: 50px;
+            }
+          </style>
+       
+         </head>
+         <script>
+
+         function setField(){
+         document.getElementById("userN").innerHTML=localStorage.getItem("username")
+         }
+         
+
+          $(document).ready(function(){  
+            
+            window.onload=setField(); 
+         
+            $("#btnAdd").on('click',function(){    
+                Add();    
+            });    
+            $("#btnSub").on('click',function(){    
+                Sub();    
+            })    
+            $("#btnMul").on('click',function(){    
+                Mul();    
+            })    
+            $("#btnDiv").on('click',function(){    
+                Div();    
+            })  
+            window.onload =function(){
+            document.getElementById("userN").innerHTML=localStorage.getItem("username")
+         }  
+        });    
+       
+        function Add(){    
+         var no1=parseFloat($("#txtNo1").val());    
+         var no2=parseFloat($("#txtNo2").val());
+         if(!(($.isNumeric($("#txtNo1").val())&&($.isNumeric($("#txtNo2").val()))))) 
+         alert("Please Enter valid numbers for Addition!") 
+         else{  
+         var result =no1+no2;    
+          alert("Answer: "+result); 
+         }   
+        }    
+        function Sub(){    
+         var no1=parseFloat($("#txtNo1").val());    
+         var no2=parseFloat($("#txtNo2").val()); 
+         if(!(($.isNumeric($("#txtNo1").val())&&($.isNumeric($("#txtNo2").val()))))) 
+         alert("Please Enter valid numbers for Subtraction!")   
+         else{
+         var result =no1-no2;    
+          alert("Answer: "+result);
+         }    
+        }    
+        function Mul(){    
+         var no1=parseFloat($("#txtNo1").val());    
+         var no2=parseFloat($("#txtNo2").val());
+         if(!(($.isNumeric($("#txtNo1").val())&&($.isNumeric($("#txtNo2").val()))))) 
+         alert("Please Enter valid numbers for Multiplication!")  
+         else{  
+         var result =no1*no2;    
+          alert("Answer: "+result);    
+        }    
+    }
+        function Div(){    
+         var no1=parseFloat($("#txtNo1").val());    
+         var no2=parseFloat($("#txtNo2").val());
+         if(!(($.isNumeric($("#txtNo1").val())&&($.isNumeric($("#txtNo2").val()))))) 
+         alert("Please Enter valid numbers for Division!")
+         else{    
+         var result =no1/no2;    
+          alert("Answer: "+result);    
+        } 
+    }
+  
+        
+
+        
+    </script>    
+    </head>    
+    <body>    
+    
+        <div id="cal">
+            <h1>Calculator</h1>
+            
+          
+           <h1> Hi, <span id="userN"></span><br><br></h1>
+        First Number <input type="text" id="txtNo1" placeholder="First number"><br>    <br>
+        Second Number<input type="text" id="txtNo2" placeholder="Second number"><br>   <br> 
+        <input type="button" id="btnAdd" value="Add">    &nbsp;
+        <input type="button" id="btnSub" value="Sub"> &nbsp;   
+        <input type="button" id="btnMul" value="Mul">  &nbsp;  
+        <input type="button" id="btnDiv" value="Div">  
+    </div>  
+    </body>    
+    </html>   

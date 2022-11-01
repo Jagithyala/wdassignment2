@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+     
+    <title>Page 1</title>
+    <style>
+       
+        #form {
+          text-align: center;
+         /* background-color:aquamarine;*/
+        }
+        main {
+          padding: 50px;
+        }
+        
+      </style>
+</head>
+<body>
+  
+  <div class="pageone">
+  <form id="form" value="form">
+    <h1>Sign-in Page</h1>
+        <label for ="emailId">Email Id*:</label>
+        <input
+        type="email"
+        name="emailid"
+        id="emailid"
+       placeholder="name@northeastern.edu" required/>
+        <br/> <br/>
+        
+     
+        <label for ="userName">User Name*:</label>
+        <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="User Name" />
+        <br/> <br/>
+
+
+        <label for ="password">Password*:</label>
+        <input
+        type="password"
+        name="password"
+        id="password"
+       placeholder="Password" required/>
+        <br/> <br/>
+
+          <!-- <input type="button" value="Submit"> -->
+          <button type="submit" value="Submit">Submit</button>
+        
+
+  </form>
+</div>
+    
+    
+    <script>
+
+        jQuery.validator.addMethod("Char", function (value, element) {
+          var regex = new RegExp("^[a-zA-Z0-9]+$");
+          var key = value;
+
+          if (!regex.test(key)) {
+              return false;
+          }
+          return true;
+      }, "Invalid Format, only alphabets and nymbers are allowed");
+
+      jQuery.validator.addMethod("email1", function (value, element) {
+          var regex = new RegExp("[a-z0-9]+@northeastern.edu");
+          var key = value;
+
+          if (!regex.test(key)) {
+              return false;
+          }
+          return true;
+      }, "Invalid Format, only alphabets and numbers are allowed");
+
+      jQuery.validator.addMethod("email2", function (value, element) {
+          var regex = new RegExp("^[a-z0-9]+@northeastern.edu+$");
+          var key = value;
+
+          if (!regex.test(key)) {
+              return false;
+          }
+          return true;
+      }, "Enter only numbers and alphabets");
+
+      $().ready(function(){
+        $("#form").validate({
+
+          rules:{
+            emailid:{
+              required:true,
+              email:true,
+              email1:true,
+              email2:true,
+            },
+            username:{
+              required:true,
+              minlength:4,
+              Char:true,
+
+            },
+            password:{
+              required:true,
+              minlength:8,
+              Char:true,
+            }
+          },
+          messages:{
+            emailid:{
+              required:'EmailId is Mandatory!',
+             email2:'Only Northeastern Email ID is accepted',
+             email1:'Incorrect Format',
+             email:'Enter full Email ID',
+
+            },
+            username:{
+              required:'User Name is Mandatory',
+              minlength:'User Name should have atleast 4 characters',
+               Char:'No spl chars are allowed',
+            },
+            password:{
+              required:'Password is Mandatory',
+              minlength:'Password should have atleast 8 characters',
+               Char:'No spl chars are allowed',
+            },
+
+          },
+          submitHandler: function(form){
+
+            var user=$("#username").val();
+            localStorage.setItem("username",user);
+            window.open('Calc.html');
+            form.submit();
+       }
+        });        
+
+      });
+        
+    </script>
+    
+</body>
+</html>
